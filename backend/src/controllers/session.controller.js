@@ -223,7 +223,8 @@ exports.deleteSession = async (req, res) => {
       });
     }
 
-    await session.remove();
+    // استخدام findByIdAndDelete بدلاً من remove() لأن الأخيرة أصبحت قديمة
+    await Session.findByIdAndDelete(req.params.id);
 
     res.json({
       success: true,
